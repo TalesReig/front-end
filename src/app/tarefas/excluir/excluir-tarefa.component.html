@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-9 mx-auto my-5">
+      <!-- Titulo -->
+      <div class="text-md-start">
+
+        <div class="text-md-start">
+          <h1 class="fw-bold text-primary">
+              Excluir Tarefa
+            </h1>
+          <hr />
+        </div>
+
+        <h2 class="fs-5">
+          Tem certeza que deseja excluir a tarefa <span class="fw-bolder fst-italic">"{{ tarefaFormVM.titulo }}" </span>?
+        </h2>
+      </div>
+
+      <dl class="form-group mt-4 row">
+
+        <dt class="col-md-4">
+          <label class="control-label">Título:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ tarefaFormVM.titulo }}
+        </dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Data de Criação:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ tarefaFormVM.dataCriacao | date: 'dd/MM/yyyy' }}
+        </dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Prioridade:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ tarefaFormVM.prioridade }}
+        </dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Quantidade de Itens:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ tarefaFormVM.itens.length }}
+        </dd>
+
+        <dt class="col-md-4">
+          <label class="control-label">Percentual Concluído:</label>
+        </dt>
+        <dd class="col-md-8">
+          {{ tarefaFormVM.percentualConcluido }}
+        </dd>
+
+      </dl>
+
+      <div class="mt-4">
+        <table *ngIf="tarefaFormVM.itens.length > 0"
+          class="table table-light table-striped table-hover table-borderless">
+          <thead class="thead-dark text-center">
+            <tr>
+              <th>Título do Item</th>
+              <th>Concluída?</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let item of tarefaFormVM.itens; let i = index">
+              <td>{{ item.titulo }}</td>
+              <td>{{ item.concluido ? "Concluído" : "Pendente" }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card-footer g-grid d-flex gap-1 mt-5">
+        <button (click)="gravar()"
+          type="button" class="btn btn-primary px-5">
+          <i class="bi bi-trash-fill me-2"></i>
+          Excluir
+        </button>
+        <button routerLink="/tarefas/listar"
+          type="button" class="btn btn-outline-primary px-5">
+          <i class="bi bi-arrow-return-left me-2"></i>
+          Voltar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

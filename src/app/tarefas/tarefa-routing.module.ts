@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/services/auth.guard';
 import { EditarTarefaComponent } from './editar/editar-tarefa.component';
+import { ExcluirTarefaComponent } from './excluir/excluir-tarefa.component';
 import { InserirTarefaComponent } from './inserir/inserir-tarefa.component';
 import { ListarTarefaComponent } from './listar/listar-tarefa.component';
 import { FormsTarefaResolver } from './services/form-tarefas.resolver';
+import { VisualizarTarefaResolver } from './services/visualizar-tarefa.resolver';
 import { TarefaAppComponent } from './tarefa-app.component';
+import { VisualizarTarefaViewModel } from './view-models/visualizar-tarefa.view-model';
 
 const routes: Routes = [
   {
@@ -18,6 +21,11 @@ const routes: Routes = [
       {
         path: 'editar/:id', component: EditarTarefaComponent,
         resolve: { tarefa: FormsTarefaResolver}
+      },
+      {
+        path: 'excluir/:id',
+        component: ExcluirTarefaComponent,
+        resolve: { tarefa: VisualizarTarefaResolver}
       },
     ]
   }
