@@ -1,0 +1,95 @@
+<section class="mt-2">
+
+  <div class="container py-3 px-3 px-md-5">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid" alt="Phone image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 mt-5 mt-md-0">
+
+        <form [formGroup]="form" (ngSubmit)="registrar()">
+          <h1 class="text-primary fw-semibold">Registro de Usuário</h1>
+
+          <div class="form-group my-3 position-relative">
+            <label class="form-label" for="nome">Nome de Usuário</label>
+            <input
+              formControlName="nome"
+              [ngClass]="nome?.touched && nome?.invalid ? 'is-invalid' : ''"
+              type="text"
+              id="nome"
+              class="form-control form-control-lg"
+            />
+            <div class="invalid-tooltip" *ngIf="nome?.touched && nome?.invalid">
+              <span *ngIf="nome?.errors?.['required']">O nome precisa ser preenchido.</span>
+              <span *ngIf="nome?.errors?.['minlength']">O nome deve ter no mínimo 3 caracteres.</span>
+            </div>
+          </div>
+
+          <div class="form-group my-3 position-relative">
+            <label class="form-label" for="email">Endereço de Email</label>
+            <input
+              formControlName="email"
+              [ngClass]="email?.touched && email?.invalid ? 'is-invalid' : ''"
+              type="email"
+              id="email"
+              class="form-control form-control-lg"
+            />
+            <div class="invalid-tooltip" *ngIf="email?.touched && email?.invalid">
+              <span *ngIf="email?.errors?.['required']">O email precisa ser preenchido.</span>
+              <span *ngIf="email?.errors?.['email']">O email precisa seguir o formato "usuario@dominio.com".</span>
+            </div>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-group my-3 position-relative">
+            <label class="form-label" for="senha">Senha</label>
+            <input
+              formControlName="senha"
+              [ngClass]="senha?.touched && senha?.invalid ? 'is-invalid' : ''"
+              type="password"
+              id="senha"
+              class="form-control form-control-lg"
+            />
+            <div class="invalid-tooltip" *ngIf="senha?.touched && senha?.invalid">
+              <span *ngIf="senha?.errors?.['required']">A senha precisa ser preenchida.</span>
+              <span *ngIf="senha?.errors?.['minlength']">A senha deve ter no mínimo 6 caracteres.</span>
+            </div>
+          </div>
+
+           <!-- Password input -->
+           <div class="form-group my-3 position-relative">
+            <label class="form-label" for="confirmarSenha">Confirmar Senha</label>
+            <input
+              formControlName="confirmarSenha"
+              [ngClass]="confirmarSenha?.touched && confirmarSenha?.invalid ? 'is-invalid' : ''"
+              type="password"
+              id="confirmarSenha"
+              class="form-control form-control-lg"
+            />
+            <div class="invalid-tooltip" *ngIf="confirmarSenha?.touched && confirmarSenha?.invalid">
+              <span *ngIf="confirmarSenha?.errors?.['required']">A senha precisa ser preenchida.</span>
+              <span *ngIf="confirmarSenha?.errors?.['minlength']">A senha deve ter no mínimo 6 caracteres.</span>
+            </div>
+          </div>
+
+          <!-- Submit button -->
+          <div class="card-footer g-grid d-flex gap-1 mt-4">
+            <button
+              type="submit" class="btn btn-primary px-5">
+              <i class="pi pi-save me-2"></i>
+              Registrar
+            </button>
+            <button routerLink="/conta/autenticar"
+              type="button" class="btn btn-outline-primary px-5">
+              <i class="pi pi-arrow-left me-2"></i>
+              Voltar
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

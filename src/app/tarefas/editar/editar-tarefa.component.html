@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-6 mx-auto my-5">
+      <!-- Titulo -->
+      <div class="text-md-start">
+        <h1 class="fw-bold text-primary">
+            Editar Tarefa
+          </h1>
+        <hr />
+      </div>
+
+      <form [formGroup]="formTarefa">
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Título:</label>
+          <input
+            [ngClass]="titulo?.touched && titulo?.invalid ? 'is-invalid' : ''"
+            formControlName="titulo"
+            class="form-control"
+            type="text"
+            placeholder="Digite o título da tarefa"
+          />
+          <div class="invalid-tooltip" *ngIf="titulo?.touched && titulo?.invalid">
+            <span *ngIf="titulo?.errors?.['required']">O título precisa ser preenchido.</span>
+            <span *ngIf="titulo?.errors?.['minlength']">O título deve ter no mínimo 3 caracteres.</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Prioridades:</label>
+          <ng-select
+            [ngClass]="prioridade?.touched && prioridade?.invalid ? 'is-invalid' : ''"
+            formControlName="prioridade" [clearable]="false" [searchable]="false">
+            <ng-option *ngFor="let prioridade of prioridades ; index as i" [value]="i" >
+                {{prioridade}}
+            </ng-option>
+            <div class="invalid-tooltip" *ngIf="prioridade?.touched && prioridade?.invalid">
+              <span *ngIf="prioridade?.errors?.['required']">A prioridade precisa ser selecionada.</span>
+            </div>
+          </ng-select>
+        </div>
+
+        <form [formGroup]="formItens">
+          <div class="form-group mt-3">
+            <label class="form-label">Itens da Tarefa:</label>
+            <div class="input-group mb-3">
+              <input formControlName="tituloItem"
+                type="text" class="form-control" placeholder="Digite o título do item que compõe a tarefa" >
+              <div class="input-group-append">
+                <button (click)="adicionarItem()"
+                  class="btn btn-outline-primary rounded-0" type="button" >Adicionar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="mt-3">
+          <table class="table table-light table-striped table-hover table-borderless" *ngIf="tarefaFormVM.itens.length > 0">
+            <thead class="thead-dark text-center">
+            <tr>
+              <th>Título do Item</th>
+              <th>Concluída?</th>
+              <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let item of itens; let i = index" [class.table-row-selected] = "item.concluido">
+
+                <td>{{item.titulo}}</td>
+                <td>
+                    <input (click)="atualizarItem(item)"
+                      class="form-check-input" type="checkbox" id="inlineCheckbox1" [checked]="item.concluido">
+                </td>
+
+                <td class="d-grid d-md-block">
+
+                  <button type="button" class="btn btn-sm btn-outline-danger me-0 me-md-1 mb-1 mb-md-auto" (click)="removerItem(item)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card-footer g-grid d-flex gap-1 mt-5">
+          <button (click)="gravar()"
+            type="button" class="btn btn-primary px-5">
+            <i class="bi bi-save me-2"></i>
+            Gravar
+          </button>
+          <button routerLink="/tarefas/listar"
+            type="button" class="btn btn-outline-primary px-5">
+            <i class="bi bi-arrow-return-left me-2"></i>
+            Voltar
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<section class="mt-5">
+  <div class="container py-3 px-3 px-md-5">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid" alt="Phone image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+
+        <form [formGroup]="form" (ngSubmit)="login()">
+          <h1 class="text-primary fw-semibold">Login de Usuário</h1>
+
+          <div class="form-group my-3 position-relative">
+            <label class="form-label" for="email">E-mail</label>
+            <input
+              [ngClass]="email?.touched && email?.invalid ? 'is-invalid' : ''"
+              formControlName="email"
+              type="text"
+              id="email"
+              class="form-control form-control-lg"/>
+              <div class="invalid-tooltip" *ngIf="email?.touched && email?.invalid">
+                <span *ngIf="email?.errors?.['required']">O email precisa ser preenchido.</span>
+                <span *ngIf="email?.errors?.['email']">O email precisa seguir o formato "usuario@dominio.com".</span>
+              </div>
+          </div>
+
+          <div class="form-group my-3 position-relative">
+            <label class="form-label" for="senha">Senha</label>
+            <input
+              [ngClass]="senha?.touched && senha?.invalid ? 'is-invalid' : ''"
+              formControlName="senha"
+              type="password"
+              id="senha"
+              class="form-control form-control-lg"/>
+              <div class="invalid-tooltip" *ngIf="senha?.touched && senha?.invalid">
+                <span *ngIf="senha?.errors?.['required']">A senha precisa ser preenchida.</span>
+                <span *ngIf="senha?.errors?.['minlength']">A senha deve ter no mínimo 6 caracteres.</span>
+              </div>
+          </div>
+
+          <div class="form-group my-3">
+            Ainda não é um usuário?
+            <a role="button" class=" text-primary text-decoration-none" routerLink="/conta/registrar">Clique aqui e cadastre-se!</a>
+          </div>
+
+          <div class="card-footer g-grid d-flex gap-1 mt-4">
+            <button
+              type="submit" class="btn btn-primary px-5">
+              <i class="pi pi-arrow-right me-2 mr-"></i>
+              Entrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

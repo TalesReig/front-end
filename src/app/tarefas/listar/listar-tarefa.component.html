@@ -1,0 +1,58 @@
+<div class="container" >
+  <div class="row">
+
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-9 mx-auto mt-5">
+
+      <!-- Titulo -->
+      <div class="text-md-start">
+        <h1 class="fw-bold text-primary">
+            Listar Tarefas
+          </h1>
+        <hr />
+      </div>
+
+      <!-- Barra de Ações -->
+      <div class="d-grid d-md-flex gap-1 mt-5">
+        <a [routerLink]="['/tarefas/inserir']"  role="button" class="btn btn-primary me-md-1">
+            <i class="pi pi-plus-circle me-2"></i>
+            Nova Tarefa
+        </a>
+      </div>
+
+      <!-- Listagem de Registros -->
+      <div class="mt-3">
+        <table class="table table-light table-striped table-hover table-borderless">
+          <thead class="thead-dark text-center">
+          <tr>
+            <th>Título</th>
+            <th>Prioridade</th>
+            <th>Situação</th>
+            <th>Ações</th>
+          </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let t of (tarefas$ | async)">
+              <td>{{t.titulo}}</td>
+              <td>{{t.prioridade }}</td>
+              <td>{{t.situacao }}</td>
+
+              <td class="d-grid d-md-block">
+                <button [routerLink]="['/tarefas/editar', t.id]"
+                  type="button" class="btn btn-sm btn-primary me-0 me-md-1 mb-1 mb-md-auto">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button [routerLink]="['/tarefas/excluir', t.id]"
+                  type="button" class="btn btn-sm btn-outline-danger me-0 me-md-1 mb-1 mb-md-auto">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
