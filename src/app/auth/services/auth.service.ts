@@ -28,6 +28,13 @@ export class AuthService {
     return resposta
   }
 
+  public logout(){
+    const resposta = this.http
+      .post(this.apiUrl + 'conta/sair', this.obterHeaderJson());
+
+    return resposta;
+  }
+
   private processarDados(resposta: any){
     if(resposta.sucesso)
       return resposta.dados;

@@ -4,6 +4,20 @@
     <button (click)="estaColapsada = !estaColapsada" class="navbar-toggler" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>
-
+    <div class="collapse navbar-collapse" [ngbCollapse]="!estaColapsada">
+      <div class="links w-100 text-center" *ngIf="(usuarioLogado$ | async) as usuarioLogado">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-primary" routerLinkActive="fw-semibold" routerLink="/tarefas">Tarefas</a>
+          </li>
+          <li class="nav-item ms-0 ms-lg-auto">
+            <a class="nav-link text-dark" routerLinkActive="fw-semibold" routerLink="/dashboard"><i class="bi bi-person-badge me-1"></i>{{ usuarioLogado.nome }}</a>
+          </li>
+          <li class="nav-item ms-2">
+            <a role="button" class="btn btn-primary px-5" (click)="sair()"><i class="bi bi-door-open-fill me-2"></i>Sair</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </nav>
