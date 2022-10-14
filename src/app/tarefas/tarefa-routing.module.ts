@@ -8,7 +8,6 @@ import { ListarTarefaComponent } from './listar/listar-tarefa.component';
 import { FormsTarefaResolver } from './services/form-tarefas.resolver';
 import { VisualizarTarefaResolver } from './services/visualizar-tarefa.resolver';
 import { TarefaAppComponent } from './tarefa-app.component';
-import { VisualizarTarefaViewModel } from './view-models/visualizar-tarefa.view-model';
 
 const routes: Routes = [
   {

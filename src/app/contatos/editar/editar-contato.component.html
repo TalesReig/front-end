@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="row">
+    <!-- Conteúdo principal -->
+    <div class="col-12 col-md-10 col-lg-6 mx-auto mt-5">
+      <!-- Titulo -->
+      <div class="text-md-start">
+        <h1 class="fw-bold text-primary">
+            Inserir Nova Contato
+          </h1>
+        <hr />
+      </div>
+
+      <form [formGroup]="formContato" class="mt-4"> <!--Importar a biblioteca Reactive Forms no contato.module-->
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Nome:</label>
+          <input
+            [ngClass]="nome?.touched && nome?.invalid ? 'is-invalid' : ''"
+            formControlName="nome"
+            class="form-control"
+            type="text"
+            placeholder="Digite o nome do contato"
+          />
+          <div class="invalid-tooltip" *ngIf="nome?.touched && nome?.invalid">
+            <span *ngIf="nome?.errors?.['required']">O nome precisa ser preenchido.</span>
+            <span *ngIf="nome?.errors?.['minlength']">O nome deve ter no mínimo 3 caracteres.</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Email:</label>
+          <input
+            [ngClass]="email?.touched && email?.invalid ? 'is-invalid' : ''"
+            formControlName="email"
+            class="form-control"
+            type="text"
+            placeholder="Digite o email do contato"
+          />
+          <div class="invalid-tooltip" *ngIf="email?.touched && email?.invalid">
+            <span *ngIf="email?.errors?.['required']">O email precisa ser preenchido.</span>
+            <span *ngIf="email?.errors?.['minlength']">O email ser um endereço válido.</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">telefone:</label>
+          <input
+            [ngClass]="telefone?.touched && telefone?.invalid ? 'is-invalid' : ''"
+            formControlName="telefone"
+            class="form-control"
+            type="string"
+            placeholder="Digite o telefone do contato"
+          />
+          <div class="invalid-tooltip" *ngIf="telefone?.touched && telefone?.invalid">
+            <span *ngIf="telefone?.errors?.['required']">O telefone precisa ser preenchido.</span>
+            <span *ngIf="telefone?.errors?.['minlength']">O telefone precisa conter no mínimo 9 digitos..</span>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Empresa:</label>
+          <input
+            [ngClass]="empresa?.touched && empresa?.invalid ? 'is-invalid' : ''"
+            formControlName="empresa"
+            class="form-control"
+            type="text"
+            placeholder="Digite o empresa do contato"
+          />
+        </div>
+
+        <div class="form-group mb-3 position-relative">
+          <label class="form-label">Cargo:</label>
+          <input
+            [ngClass]="cargo?.touched && cargo?.invalid ? 'is-invalid' : ''"
+            formControlName="cargo"
+            class="form-control"
+            type="text"
+            placeholder="Digite o nome do cargo do contato"
+          />
+        </div>
+
+        <div class="card-footer g-grid d-flex gap-1 mt-5">
+          <button (click)="gravar()"
+            type="button" class="btn btn-primary px-5">
+            <i class="pi pi-save me-2"></i>
+            Gravar
+          </button>
+          <button routerLink="/contatos/listar"
+            type="button" class="btn btn-outline-primary px-5">
+            <i class="pi pi-arrow-left me-2"></i>
+            Voltar
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

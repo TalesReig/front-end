@@ -6,4 +6,5 @@ import { Component, OnInit } from '@angular/core';
   <router-outlet></router-outlet>
   `
 })
+
 export class ContatoAppComponent {}
